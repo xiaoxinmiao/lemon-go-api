@@ -25,16 +25,86 @@ paths:
           description: |
         default:
           description: pong
+  /fruits:
+    get:
+      summary: fruit
+      description: |
+      parameters:
+        - name: sortby
+          in: query
+          description: |
+          required: false
+          type: string
+        - name: order
+          in: query
+          description: |
+          required: false
+          type: string
+        - name: skipCount
+          in: query
+          description: |
+          required: false
+          type: string
+        - name: maxResultCount
+          in: query
+          description: |
+          required: false
+          type: string
+      tags:
+        - fruit
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/ArrayResult'
+        default:
+          description: error
+          schema:
+            $ref: '#/definitions/ErrorResult'
+  /sign:
+    get:
+      summary: sign
+      description: |
+      parameters:
+        - name: name
+          in: query
+          description: |
+          required: false
+          type: string
+        - name: sign
+          in: query
+          description: |
+          required: false
+          type: string
+        - name: authors
+          in: query
+          description: |
+          required: false
+          schema:
+            $ref: '#/definitions/ArrayAuthor'
+      tags:
+        - sign
+      responses:
+        200:
+          description: |
+          schema:
+            $ref: '#/definitions/ArrayResult'
+        default:
+          description: error
+          schema:
+            $ref: '#/definitions/ErrorResult'
 definitions:
-  Content:
+  ArrayAuthor:
+    type: array
+    items:
+      $ref: '#/definitions/Author'
+  Author:
     type: object
     properties:
-      code:
-        type: string
       name:
         type: string
-      desc:
-        type: string
+      age:
+        type: integer
   Error:
     type: object
     properties:
