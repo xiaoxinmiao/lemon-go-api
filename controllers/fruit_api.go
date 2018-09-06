@@ -20,6 +20,12 @@ func (d FruitApiController) Init(g *echo.Group) {
 	g.DELETE("/:id", d.Delete)
 }
 
+/*
+localhost:8080/fruits
+localhost:8080/fruits?name=apple
+localhost:8080/fruits?skipCount=0&maxResultCount=2
+localhost:8080/fruits?skipCount=0&maxResultCount=2&sortby=store_code&order=desc
+*/
 func (FruitApiController) GetAll(c echo.Context) error {
 	var v SearchInput
 	if err := c.Bind(&v); err != nil {
@@ -40,6 +46,16 @@ func (FruitApiController) GetAll(c echo.Context) error {
 	return ReturnApiListSucc(c, http.StatusOK, totalCount, items)
 }
 
+/*
+localhost:8080/fruits
+ {
+        "code": "AA01",
+        "name": "Apple",
+        "color": "",
+        "price": 2,
+        "store_code": ""
+    }
+*/
 func (d FruitApiController) Create(c echo.Context) error {
 	var v models.Fruit
 	if err := c.Bind(&v); err != nil {
@@ -75,6 +91,10 @@ func (FruitApiController) create(c echo.Context, fruit *models.Fruit) (err error
 	return ReturnApiSucc(c, http.StatusCreated, fruit)
 }
 
+/*
+localhost:8080/fruits/1?full=1
+localhost:8080/fruits/1
+*/
 func (d FruitApiController) GetOne(c echo.Context) error {
 	full := c.QueryParam("full")
 	if len(full) != 0 {
@@ -124,6 +144,12 @@ func (FruitApiController) GetOneFull(c echo.Context) (err error) {
 	return
 }
 
+/*
+localhost:8080/fruits
+ {
+        "price": 21,
+    }
+*/
 func (d FruitApiController) Update(c echo.Context) error {
 	var v models.Fruit
 	if err := c.Bind(&v); err != nil {
@@ -165,6 +191,9 @@ func (FruitApiController) update(c echo.Context, v *models.Fruit) (err error) {
 	return
 }
 
+/*
+localhost:8080/fruits/45
+*/
 func (d FruitApiController) Delete(c echo.Context) error {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
