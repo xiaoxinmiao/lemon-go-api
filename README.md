@@ -1,4 +1,4 @@
-# sample-go-api template
+# go-api template
 
 You can quickly create an echo-based api project
 
@@ -13,14 +13,14 @@ You can quickly create an echo-based api project
 
 Get source
 ```
-$ git clone https://gitlab.p2shop.cn:8443/sample/sample-go-api.git
+$ git clone https://gitlab.p2shop.cn:8443/sample/go-api.git
 ```
 Rename the outermost folder to your project name  
-Rename sample-api-go to your project name
+Rename api-go to your project name
 
 Run
 ```
-$ cd $GOPATH/src/sample-go-api
+$ cd $GOPATH/src/go-api
 $ go run main.go
 ```
 
@@ -30,7 +30,7 @@ Visit swagger   http://127.0.0.1:8080/docs/index.html
 ## Sample
 You can see the latest sample here
 ```
-https://gitlab.p2shop.cn:8443/sample/sample-go-api.git
+https://gitlab.p2shop.cn:8443/sample/go-api.git
 ```
 
 

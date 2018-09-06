@@ -3,7 +3,7 @@ package controllers
 import (
 	"context"
 	"os"
-	"sample-go-api/factory"
+	"go-api/factory"
 
 	"github.com/asaskevich/govalidator"
 	"github.com/pangpanglabs/goutils/echomiddleware"
