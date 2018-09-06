@@ -9,5 +9,5 @@ behaviorLog:
         - 10.173.208.142:9092
       topic: behaviorlog
 debug: true
-service: sample-go-api
+service: go-api
 httpport: 8080

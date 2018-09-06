@@ -4,9 +4,11 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"go-api/controllers"
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/asaskevich/govalidator"
 	_ "github.com/go-sql-driver/mysql"
@@ -16,7 +18,7 @@ import (
 	configutil "github.com/pangpanglabs/goutils/config"
 	"github.com/pangpanglabs/goutils/echomiddleware"
 
-	"sample-go-api/factory"
+	"go-api/factory"
 )
 
 var (
@@ -26,6 +28,7 @@ var (
 func main() {
 	appEnv := flag.String("app-env", os.Getenv("APP_ENV"), "app env")
 	fruitConnEnv := flag.String("FRUIT_CONN", os.Getenv("FRUIT_CONN"), "FRUIT_CONN")
+	jwtEnv := flag.String("JWT_SECRET", os.Getenv("JWT_SECRET"), "JWT_SECRET")
 	flag.Parse()
 
 	var c Config
@@ -50,6 +53,29 @@ func main() {
 	})
 	e.Static("/swagger-yml", "./swagger-yml")
 	e.Static("/docs", "./swagger-ui")
+	controllers.FruitApiController{}.Init(e.Group("/fruits"))
+	controllers.FruitApiController{}.Init(e.Group("/v1/fruits"))
+	e.Use(middleware.JWTWithConfig(middleware.JWTConfig{
+		SigningKey: []byte(*jwtEnv),
+		Skipper: func(c echo.Context) bool {
+			ignore := []string{
+				"/ping",
+				"/fruits",
+				"/sign",
+				"/swagger",
+				"/docs",
+			}
+
+			for _, i := range ignore {
+				if strings.HasPrefix(c.Request().URL.Path, i) {
+					return true
+				}
+			}
+
+			return false
+		},
+	}))
+
 	e.Pre(middleware.RemoveTrailingSlash())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORS())

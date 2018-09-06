@@ -43,7 +43,7 @@ func Logger(ctx context.Context) *logrus.Entry {
 }
 
 const (
-	ContextConfigName = "sample-go-api-config"
+	ContextConfigName = "go-api-config"
 )
 
 func Config(ctx context.Context, key string) interface{} {
