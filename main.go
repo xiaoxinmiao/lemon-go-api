@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"go-api/controllers"
+	"go-api/models"
 	"log"
 	"net/http"
 	"os"
@@ -118,6 +119,7 @@ func initDB(driver, connection string) (*xorm.Engine, error) {
 	if err != nil {
 		return nil, err
 	}
+	db.Sync(new(models.Fruit))
 	return db, nil
 }
 

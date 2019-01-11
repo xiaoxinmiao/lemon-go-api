@@ -1,9 +1,9 @@
-package controllers
+package controllers_test
 
 import (
 	"context"
-	"os"
 	"go-api/factory"
+	"os"
 
 	"github.com/asaskevich/govalidator"
 	"github.com/pangpanglabs/goutils/echomiddleware"
