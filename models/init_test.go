@@ -1,4 +1,4 @@
-package models
+package models_test
 
 import (
 	"context"
@@ -19,7 +19,6 @@ func init() {
 		panic(err)
 	}
 	xormEngine.ShowSQL(true)
-	xormEngine.Sync(new(Fruit))
 
 	ctx = context.WithValue(context.Background(), echomiddleware.ContextDBName, xormEngine.NewSession())
 }

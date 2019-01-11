@@ -2,7 +2,7 @@ logger:
   kafka:
         brokers:
           - 10.173.208.142:9092
-        topic: logger
+        topic: sqllog
 behaviorLog:
     kafka:
       brokers:
