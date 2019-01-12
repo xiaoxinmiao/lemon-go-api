@@ -12,7 +12,7 @@ RUN echo ">>> 3: go install" && go install
 FROM pangpanglabs/alpine-ssl
 WORKDIR /go/bin/
 # copy config files to image
-COPY --from=builder /go/src/go-api/*.yml ./go-api/
+COPY --from=builder /go/src/go-api/*.yml ./
 COPY --from=builder /swagger-ui/ ./swagger-ui/
 COPY --from=builder /go/src/go-api/index.html ./swagger-ui/
 # copy execute file to image
