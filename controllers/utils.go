@@ -121,7 +121,7 @@ func ReturnApiListFail(c echo.Context, status int, apiError ApiError, err error,
 	}
 	return c.JSON(status, ApiResult{
 		Success: false,
-		Result:  ArrayResult{TotalCount: 0, Items: make([]string, 0)},
+		Result:  ArrayResult{TotalCount: 0, Items: nil},
 		Error: ApiError{
 			Code:    apiError.Code,
 			Message: apiError.Message,
