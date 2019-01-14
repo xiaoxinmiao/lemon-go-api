@@ -41,7 +41,7 @@ func (FruitApiController) GetAll(c echo.Context) error {
 		return ReturnApiListFail(c, http.StatusInternalServerError, ApiErrorDB, err)
 	}
 	if len(items) == 0 {
-		return ReturnApiListFail(c, http.StatusNotFound, ApiErrorNotFound, err)
+		return ReturnApiListFail(c, http.StatusNotFound, ApiErrorNotFound, nil)
 	}
 	return ReturnApiListSucc(c, http.StatusOK, totalCount, items)
 }
