@@ -19,8 +19,8 @@ const (
 )
 
 type ApiResult struct {
-	Result  interface{} `json:"result"`
 	Success bool        `json:"success"`
+	Result  interface{} `json:"result"`
 	Error   ApiError    `json:"error"`
 }
 
@@ -31,8 +31,8 @@ type ApiError struct {
 }
 
 type ArrayResult struct {
-	Items      interface{} `json:"items"`
 	TotalCount int64       `json:"totalCount"`
+	Items      interface{} `json:"items"`
 }
 
 var (
